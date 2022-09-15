@@ -2,7 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+
+
 package laboratorio2;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,6 +20,8 @@ public class Interfaz extends javax.swing.JFrame {
      */
     public Interfaz() {
         initComponents();
+        lblMessage.setVisible(false);
+        lblPuntuacion.setVisible(false);
     }
 
     /**
@@ -27,10 +34,12 @@ public class Interfaz extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        TFUser = new javax.swing.JTextField();
+        TFPassword = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
         lblUser = new javax.swing.JLabel();
+        lblMessage = new javax.swing.JLabel();
+        lblPuntuacion = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -42,57 +51,79 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(16, 110, 247));
 
-        jTextField1.setBackground(new java.awt.Color(16, 110, 247));
-        jTextField1.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 2, true));
+        TFUser.setBackground(new java.awt.Color(16, 110, 247));
+        TFUser.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
+        TFUser.setForeground(new java.awt.Color(255, 255, 255));
+        TFUser.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 2, true));
 
-        jTextField2.setBackground(new java.awt.Color(16, 110, 247));
-        jTextField2.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 2, true));
+        TFPassword.setBackground(new java.awt.Color(16, 110, 247));
+        TFPassword.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
+        TFPassword.setForeground(new java.awt.Color(255, 255, 255));
+        TFPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 2, true));
 
         lblPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/candado.png"))); // NOI18N
 
         lblUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/usuario.png"))); // NOI18N
 
+        lblMessage.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        lblMessage.setForeground(new java.awt.Color(255, 51, 51));
+        lblMessage.setText(".");
+
+        lblPuntuacion.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        lblPuntuacion.setForeground(new java.awt.Color(255, 51, 51));
+        lblPuntuacion.setText(".");
+
         btnLogin.setBackground(new java.awt.Color(16, 110, 247));
-        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/desbloqueado.png"))); // NOI18N
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/acceso_1.png"))); // NOI18N
         btnLogin.setBorder(null);
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblUser)
                     .addComponent(lblPassword))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblMessage)
+                    .addComponent(TFUser, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(TFPassword))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogin))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TFUser, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addComponent(lblMessage))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(lblPuntuacion)))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(TFPassword)
+                        .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
         );
 
         jPanel2.setBackground(new java.awt.Color(56, 94, 143));
@@ -101,11 +132,11 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 429, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 43, Short.MAX_VALUE)
+            .addGap(0, 31, Short.MAX_VALUE)
         );
 
         jPanel1.setBackground(new java.awt.Color(77, 145, 223));
@@ -137,7 +168,7 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -152,16 +183,17 @@ public class Interfaz extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -171,6 +203,81 @@ public class Interfaz extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        lblMessage.setVisible(false);
+        String password = TFPassword.getText();
+        int tamPassword = password.length();
+        int puntuacion;
+        
+        readFile();
+        if(tamPassword < myList.get(0)){           
+            lblMessage.setText("Contraseña menor de 6 caracteres");
+            lblMessage.setVisible(true);
+
+        }else{ //La cadena es mayor a 6 caracteres
+            puntuacion = myList.get(1) * tamPassword;           
+            
+            int numMayus = 0;
+            int numLetras = 0;
+            int numNumeros = 0;
+            int numSimbolos = 0;
+            for(int i = 0; i < tamPassword; i++){
+                if(password.charAt(i) >= 65 && password.charAt(i) <= 90){
+                    numMayus++;
+                }
+                if(password.charAt(i) >= 65 && password.charAt(i) <= 90 || password.charAt(i) >= 97 && password.charAt(i) <= 122){
+                    numLetras++;
+                }
+                if(password.charAt(i) >= 48 && password.charAt(i) <= 57){
+                    numNumeros++;
+                }
+                if((password.charAt(i) < 65 && password.charAt(i) > 57) || (password.charAt(i) > 90 && password.charAt(i) < 97) || password.charAt(i) < 48 || password.charAt(i) > 122){
+                    numSimbolos++;
+                }
+            }
+            
+            puntuacion = puntuacion + (myList.get(2) * numMayus);
+            puntuacion = puntuacion + (myList.get(3) + numLetras);
+            puntuacion = puntuacion + (myList.get(4) + numNumeros);
+            puntuacion = puntuacion + ((myList.get(5) + tamPassword) * numSimbolos);
+            
+            if(numLetras == tamPassword){ //Solo hay letras
+                puntuacion = puntuacion - myList.get(6);
+            }
+            if(numNumeros == tamPassword){ //Solo hay números
+                puntuacion = puntuacion - myList.get(7);
+            }
+                       
+            //lblPuntuacion.setText(puntuacion + "");
+            
+        }       
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
+    
+    List<Integer> myList = new ArrayList();
+    public void readFile(){
+        String fileName = "C:\\puntuacion.txt";
+        BufferedReader reader;
+        try{
+            reader = new BufferedReader(new FileReader(fileName));
+            String line = reader.readLine();
+            
+            int value = Integer.parseInt(line);            
+            myList.add(value);
+            while(line != null){
+                line = reader.readLine();
+                
+                if(line != null){
+                    value = Integer.parseInt(line);
+                myList.add(value);
+                }                             
+            }
+            reader.close();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -207,15 +314,17 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TFPassword;
+    private javax.swing.JTextField TFUser;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblMessage;
     private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPuntuacion;
     public javax.swing.JLabel lblUser;
     // End of variables declaration//GEN-END:variables
 }
