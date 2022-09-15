@@ -38,14 +38,17 @@ public class Interfaz extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel3.setBackground(new java.awt.Color(16, 110, 247));
 
         jTextField1.setBackground(new java.awt.Color(16, 110, 247));
+        jTextField1.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 2, true));
 
         jTextField2.setBackground(new java.awt.Color(16, 110, 247));
+        jTextField2.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 255), 2, true));
 
