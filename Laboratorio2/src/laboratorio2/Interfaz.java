@@ -8,6 +8,7 @@ package laboratorio2;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -211,7 +212,7 @@ public class Interfaz extends javax.swing.JFrame {
         
         readFile();
         if(tamPassword < myList.get(0)){           
-            lblMessage.setText("Contraseña menor de 6 caracteres");
+            lblMessage.setText("Contraseña menor de " + myList.get(0).toString() + " caracteres");
             lblMessage.setVisible(true);
 
         }else{ //La cadena es mayor a 6 caracteres
@@ -247,7 +248,20 @@ public class Interfaz extends javax.swing.JFrame {
             if(numNumeros == tamPassword){ //Solo hay números
                 puntuacion = puntuacion - myList.get(7);
             }
-                       
+            
+            String resul = "";
+            if(puntuacion <= arreglo[0][1]){
+                resul = "insegura";
+            }else if (puntuacion >= arreglo[1][0] && puntuacion <= arreglo[1][1]){
+                resul = "poco segura";
+            }
+            else if(puntuacion >= arreglo[2][0] && puntuacion <= arreglo[2][1]){
+                resul = "segura";
+            }else{
+                resul = "muy segura";
+            }
+            JOptionPane.showMessageDialog(null, "La puntuación obtenida fue de: " + puntuacion, "Resultado", HEIGHT);
+            JOptionPane.showMessageDialog(null, "Contraseña " + resul, "Resultado", HEIGHT);
             //lblPuntuacion.setText(puntuacion + "");
             
         }       
@@ -255,11 +269,14 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
     
     List<Integer> myList = new ArrayList();
+    int arreglo[][] = new int[4][2];
     public void readFile(){
         String fileName = "C:\\puntuacion.txt";
+        String fileResul = "C:\\resultado.txt";
         BufferedReader reader;
+        BufferedReader reader1;
         try{
-            reader = new BufferedReader(new FileReader(fileName));
+            reader = new BufferedReader(new FileReader(fileName));            
             String line = reader.readLine();
             
             int value = Integer.parseInt(line);            
@@ -273,6 +290,23 @@ public class Interfaz extends javax.swing.JFrame {
                 }                             
             }
             reader.close();
+            
+            reader1 = new BufferedReader(new FileReader(fileResul));
+            String linea = reader1.readLine();
+            int cont = 0;
+            while(linea != null){                
+                if(!"".equals(linea)){
+                    String[] data = linea.split(",");
+                    int x0 = Integer.parseInt(data[0]);
+                    int x1 = Integer.parseInt(data[1]);
+                    arreglo[cont][0] = x0;
+                    arreglo[cont][1] = x1;
+                }
+                cont++;
+                linea = reader1.readLine();
+            }     
+            reader1.close();
+            
         }
         catch(IOException e){
             e.printStackTrace();
